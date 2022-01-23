@@ -5,12 +5,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: which dotnet
-      - run: dotnet --list-sdks
-      - run: dotnet --version
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1
+      - run: ls -al ~/.dotnet
+      - run: ls -al ~/.dotnet/sdk
       - run: which dotnet
       - run: dotnet --list-sdks
       - run: dotnet --version
