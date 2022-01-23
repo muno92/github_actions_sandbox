@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1
+          dotnet-version: 6.0
       - run: ls -al ~/.dotnet
       - run: ls -al ~/.dotnet/sdk
       - run: which dotnet
