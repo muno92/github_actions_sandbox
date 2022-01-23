@@ -10,13 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: which dotnet
-      - run: ls -al ~/.dotnet
-      - run: ls -al ~/.dotnet/sdk/*
+      - run: dotnet --list-sdks
+      - run: dotnet --version
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.0'
       - run: which dotnet
-      - run: ls -al ~/.dotnet
-      - run: ls -al ~/.dotnet/sdk/*
       - run: dotnet --list-sdks
       - run: dotnet --version
