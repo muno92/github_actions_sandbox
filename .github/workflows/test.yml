@@ -2,14 +2,21 @@ name: "Test"
 on: push
 jobs:
   dotnet:
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ ubuntu-latest, macos-latest ]
+    runs-on: ${{ matrix.operating-system }}
     steps:
       - uses: actions/checkout@v2
+      - run: which dotnet
+      - run: ls -al ~/.dotnet
+      - run: ls -al ~/.dotnet/sdk/*
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.0'
+      - run: which dotnet
       - run: ls -al ~/.dotnet
       - run: ls -al ~/.dotnet/sdk/*
-      - run: which dotnet
       - run: dotnet --list-sdks
       - run: dotnet --version
