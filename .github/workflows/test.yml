@@ -9,12 +9,8 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     steps:
       - uses: actions/checkout@v2
-      - run: which dotnet
-      - run: dotnet --list-sdks
-      - run: dotnet --version
-      - uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0'
-      - run: which dotnet
-      - run: dotnet --list-sdks
-      - run: dotnet --version
+      - name: Push
+        run: |
+          touch test.txt
+          git commit -m 'From GitHub Action'
+          git push origin master
