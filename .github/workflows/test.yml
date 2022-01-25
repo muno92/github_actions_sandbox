@@ -17,4 +17,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Show PostgreSQL Version
-        run: PGPASSWORD=password psql -U postgres -c "SELECT version();"
+        run: PGPASSWORD=password psql -h localhost -U postgres -c "SELECT version();"
