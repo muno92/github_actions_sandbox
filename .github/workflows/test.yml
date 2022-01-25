@@ -2,15 +2,12 @@ name: "Test"
 on: push
 jobs:
   dotnet:
-    strategy:
-      fail-fast: false
-      matrix:
-        operating-system: [ ubuntu-latest, macos-latest ]
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create Test file
+        run: touch test.txt
+      - name: Commit
+        run: git commit -m 'From GitHub Action'
       - name: Push
-        run: |
-          touch test.txt
-          git commit -m 'From GitHub Action'
-          git push origin master
+        run: git push origin master
