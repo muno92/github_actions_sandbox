@@ -5,7 +5,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        postgres-verison: [ 9.6, 10 ]
+        postgres-verison: [ 9.6, 10, 11, 12, 13, 14 ]
     runs-on: ubuntu-latest
     services:
       postgres:
