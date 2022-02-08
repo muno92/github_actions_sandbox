@@ -1,19 +1,22 @@
 name: "Test"
 on: push
 jobs:
-  test:
-    strategy:
-      fail-fast: false
-      matrix:
-        postgres-verison: [ 9.6, 10, 11, 12, 13, 14 ]
+  dotnet:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:${{ matrix.postgres-verison }}
-        env:
-          POSTGRES_PASSWORD: password
-        ports:
-          - 5432:5432
     steps:
-      - name: Show PostgreSQL Version
-        run: PGPASSWORD=password psql -h localhost -U postgres -c "SELECT version();"
+      - uses: actions/checkout@v2
+      - run: ssh -T git@github.com
+      - run: ls -al ~/.ssh
+      - name: Create Test file
+        run: echo > 'updated.' test.txt
+      - name: Git Config
+        run: |
+          git config --global user.name aaa
+          git config --global user.email "bbb@users.noreply.github.com
+      - name: Add
+        run: git add .
+      - name: Commit
+        run: git commit -m 'From GitHub Action'
+      - name: Push
+        run: git push origin master
+
