@@ -5,7 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ls -al ~/.ssh
       - name: Create Test file
         run: echo > 'updated.' test.txt
       - name: Git Config
