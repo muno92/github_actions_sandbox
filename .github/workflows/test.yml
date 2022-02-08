@@ -1,16 +1,16 @@
 name: "Test"
 on: push
 jobs:
-  dotnet:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Create Test file
-        run: echo > 'updated.' test.txt
+        run: echo 'updated.' > test.txt
       - name: Git Config
         run: |
-          git config --global user.name aaa
-          git config --global user.email "bbb@users.noreply.github.com"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Add
         run: git add .
       - name: Commit
