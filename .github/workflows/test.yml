@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sudo pecl install runkit7-alpha
-      - run: php${{ matrix.php }} -r 'var_dump(get_loaded_extensions());'
+      - run: php${{ matrix.php }} -d extension=runkit7.so -r 'var_dump(get_loaded_extensions());'
