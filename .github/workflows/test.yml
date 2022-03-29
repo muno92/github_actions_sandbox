@@ -6,7 +6,9 @@ jobs:
       matrix:
         php: [ 7.4, '8.1' ]
       fail-fast: false
+    container:
+      image: php:${{ matrix.php }}-cli
     runs-on: ubuntu-latest
     steps:
-      - run: sudo pecl install runkit7-alpha
-      - run: php${{ matrix.php }} -d extension=$(php${{ matrix.php }} -r 'echo ini_get("extension_dir");')/runkit7.so -r 'var_dump(get_loaded_extensions());'
+      - run: pecl install runkit7-alpha
+      - run: php -d extension=runkit7.so -r 'var_dump(get_loaded_extensions());'
