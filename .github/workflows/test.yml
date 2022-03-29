@@ -2,7 +2,10 @@ name: "Test"
 on: push
 jobs:
   test:
+    strategy:
+      matrix:
+        php: [ 7.4, 8.0 ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: php -d log_errors=Off sample.php
+      - run: pecl install runkit7
+      - run: php${{ matrix.php }} -r "echo runkit7_object_id([]) . PHP_EOL;"
