@@ -8,5 +8,6 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
+      - run: pecl config-set ext_dir $(php${{ matrix.php }} -r 'echo ini_get("extension_dir");')
       - run: sudo pecl install runkit7-alpha
       - run: php${{ matrix.php }} -d extension=runkit7.so -r 'var_dump(get_loaded_extensions());'
