@@ -2,13 +2,10 @@ name: "Test"
 on: push
 jobs:
   test:
-    strategy:
-      matrix:
-        php: [ 7.4, '8.1' ]
-      fail-fast: false
-    container:
-      image: php:${{ matrix.php }}-cli
     runs-on: ubuntu-latest
     steps:
-      - run: pecl install runkit7-alpha
-      - run: php -d extension=runkit7.so -r 'var_dump(get_loaded_extensions());'
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+      - run: php -v
+      - run: /usr/bin/env php -v
