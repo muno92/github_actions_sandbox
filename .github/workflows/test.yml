@@ -7,5 +7,6 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
+      - run: which php
       - run: php --ini
       - run: /usr/bin/env php --ini
