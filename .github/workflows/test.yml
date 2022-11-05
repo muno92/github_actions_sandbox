@@ -4,9 +4,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-      - run: which php
-      - run: php --ini
-      - run: /usr/bin/env php --ini
+      - run: |
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.action_repository }}/actions/runs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
