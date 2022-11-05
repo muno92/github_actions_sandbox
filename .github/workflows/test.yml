@@ -4,7 +4,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo {{ github.action_repository }}
+      - run: echo ${{ github.action_repository }}
       - run: echo $GITHUB_ACTION_REPOSITORY
       - run: echo "/repos/${GITHUB_ACTION_REPOSITORY}/actions/runs"
       - run: |
