@@ -4,6 +4,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - run: echo $GITHUB_ACTION_REPOSITORY
+      - run: echo "/repos/${GITHUB_ACTION_REPOSITORY}/actions/runs"
       - run: |
           gh api \
             -H "Accept: application/vnd.github+json" \
