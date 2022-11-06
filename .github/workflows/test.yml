@@ -4,6 +4,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "MONTH=$(date +'%Y-%m')" > $GITHUB_ENV
       - run: echo $MONTH
-        env:
-          MONTH: $(date +'%Y-%m')
