@@ -4,12 +4,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.repository }}
-      - run: echo $GITHUB_REPOSITORY
-      - run: echo "/repos/${GITHUB_REPOSITORY}/actions/runs"
-      - run: |
-          gh api \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/${GITHUB_REPOSITORY}/actions/runs"
+      - run: echo $MONTH
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MONTH: date +'%Y-%m'
+      - run: echo $MONTH
+        with:
+          MONTH: date +'%Y-%m'
