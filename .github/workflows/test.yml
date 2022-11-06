@@ -6,4 +6,4 @@ jobs:
     steps:
       - run: echo $MONTH
         env:
-          MONTH: date +'%Y-%m'
+          MONTH: $(date +'%Y-%m')
