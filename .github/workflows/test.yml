@@ -7,6 +7,7 @@ jobs:
       - run: echo $MONTH
         env:
           MONTH: date +'%Y-%m'
+      - run: echo "WITH_MONTH=$(date +'%Y-%m')" > $GITHUB_ENV
       - run: echo $MONTH
         with:
-          MONTH: date +'%Y-%m'
+          MONTH: ${{ WITH_MONTH }}
