@@ -4,5 +4,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "MONTH=$(date +'%Y-%m')" > $GITHUB_ENV
-      - run: echo $MONTH
+      - name: Write GitHub Summary from code
+        shell: python
+        run: |
+          import os
+          summary_path = os.environ['GITHUB_STEP_SUMMARY']
+          print(summary_path)
+          with open(summary_path, encoding="utf-8") as f:
+              f.write('### Summary from python')
+              f.write('This summary is set from python')
