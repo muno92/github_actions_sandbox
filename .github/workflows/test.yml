@@ -18,10 +18,17 @@ jobs:
         run:  echo "REPO_NAME=$(echo $GITHUB_REPOSITORY | grep -oP '(?<=/)(.+)')" >> $GITHUB_ENV
       - name: Set output file suffix
         if: ${{ matrix.os == 'Windows' }}
-        run: echo "SUFFIX=.exe" >> $GITHUB_ENV
+        run: |
+          echo "SUFFIX=.exe" >> $GITHUB_ENV
+          echo "LABEL=#windows" >> $GITHUB_ENV
+      - name: Set file name
+        run: echo "FILE_NAME=${REPO_NAME}_${{ matrix.os }}_${{ matrix.arch }}${SUFFIX}" >> $GITHUB_ENV
       - name: Build
-        run: go build -o "${REPO_NAME}_${{ matrix.os }}_${{ matrix.arch }}${SUFFIX}"
+        run: go build -o $FILE_NAME
         env:
           GOOS: ${{ matrix.os }}
           GOARCH: ${{ matrix.arch }}
-      - run: ls -al
+      - name: Attach asset to release
+        run: gh release upload 0.1.0 ${FILE_NAME}${LABEL}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
