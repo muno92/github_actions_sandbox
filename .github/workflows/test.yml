@@ -1,15 +1,20 @@
 name: "Test"
 on: push
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [linux, darwin, windows]
+        arch: [amd64, arm64]
     steps:
-      - name: Write GitHub Summary from code
-        shell: python
-        run: |
-          import os
-          summary_path = os.environ['GITHUB_STEP_SUMMARY']
-          print(summary_path)
-          with open(summary_path, encoding="utf-8", mode='w') as f:
-              f.write('### Summary from python')
-              f.write('This summary is set from python')
+      - name: Set up go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Build
+        run: go build
+        env:
+          GOOS: ${{ matrix.os }}
+          GOARCH: ${{ matrix.arch }}
+      - run: ls -al
