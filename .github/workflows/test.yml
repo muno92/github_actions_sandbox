@@ -4,7 +4,6 @@ on:
 
 jobs:
   tagpr:
-    id: tagpr
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
