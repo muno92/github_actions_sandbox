@@ -18,7 +18,7 @@ jobs:
         run:  echo "REPO_NAME=$(echo $GITHUB_REPOSITORY | grep -oP '(?<=/)(.+)')" >> $GITHUB_ENV
       - name: Set output file suffix
         if: ${{ matrix.os == 'Windows' }}
-        run: echo "SUFFIX='.exe'" >> $GITHUB_ENV
+        run: echo "SUFFIX=.exe" >> $GITHUB_ENV
       - name: Build
         run: go build -o "${REPO_NAME}_${{ matrix.os }}_${{ matrix.arch }}${SUFFIX}"
         env:
