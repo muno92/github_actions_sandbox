@@ -5,5 +5,5 @@ import "fmt"
 var Version = "0.2.5"
 
 func main() {
-	fmt.Println("Hello, 世界")
+	fmt.Println("Hello, world")
 }
