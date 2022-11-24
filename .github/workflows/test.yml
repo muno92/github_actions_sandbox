@@ -13,7 +13,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build:
     needs: tagpr
-    if: needs.tagpr.outputs.tagpr-tag != ''
+    if: needs.tagpr.outputs.tag != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
