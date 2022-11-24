@@ -4,6 +4,8 @@ on:
 
 jobs:
   tagpr:
+    outputs:
+      tagpr-tag: ${{ steps.run-tagpr.outputs.tag }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,7 +15,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build:
     needs: tagpr
-    if: needs.tagpr.outputs.tag != ''
+    if: needs.tagpr.outputs.tagpr-tag != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
