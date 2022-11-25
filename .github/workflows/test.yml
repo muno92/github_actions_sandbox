@@ -16,5 +16,5 @@ jobs:
   build:
     needs: tagpr
     if: needs.tagpr.outputs.tagpr-tag != ''
-    uses: .github/workflows/release.yml@main
+    uses: ./.github/workflows/release.yml@main
     secrets: inherit
