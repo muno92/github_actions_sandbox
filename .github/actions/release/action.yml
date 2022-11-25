@@ -4,8 +4,6 @@ on:
 
 jobs:
   build:
-    needs: tagpr
-    if: needs.tagpr.outputs.tagpr-tag != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
