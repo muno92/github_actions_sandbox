@@ -18,4 +18,4 @@ jobs:
     if: needs.tagpr.outputs.tagpr-tag != ''
     runs-on: ubuntu-latest
     steps:
-      - uses: muno92/github_actions_sandbox/.github/actions/release.yml
+      - uses: muno92/github_actions_sandbox/.github/actions/release.yml@master
