@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.3.5](https://github.com/muno92/github_actions_sandbox/compare/v0.3.4...v0.3.5) - 2022-11-25
+
 ## [v0.3.4](https://github.com/muno92/github_actions_sandbox/compare/v0.3.3...v0.3.4) - 2022-11-25
 
 ## [v0.3.3](https://github.com/muno92/github_actions_sandbox/compare/v0.3.2...v0.3.3) - 2022-11-25
