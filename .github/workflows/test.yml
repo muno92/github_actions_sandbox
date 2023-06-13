@@ -3,18 +3,33 @@ on:
   push:
 
 jobs:
-  tagpr:
+  test1:
     outputs:
-      tagpr-tag: ${{ steps.tagpr.outputs.tag }}
+      test1: ${{ steps.test.outputs.test1 }}
+      test2: ${{ steps.test.outputs.test2 }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - id: tagpr
-        uses: Songmu/tagpr@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  build:
-    needs: tagpr
-    if: needs.tagpr.outputs.tagpr-tag != ''
-    uses: ./.github/workflows/release.yml
-    secrets: inherit
+      - name: test
+        id: test
+        run: |
+          echo "test1=${{ toJSON('[0, 1]') }}" >> $GITHUB_OUTPUT
+          echo "test2=aaa" >> $GITHUB_OUTPUT
+
+  test2:
+    needs: test1
+    if: ${{ needs.test1.outputs.test1 != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'test2'
+  test3:
+    needs: test1
+    if: ${{ fromJSON(needs.test1.outputs.test1)[1] != 0 }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'test3'
+  test4:
+    needs: test1
+    if: ${{ needs.test1.outputs.test2 != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'test4'
