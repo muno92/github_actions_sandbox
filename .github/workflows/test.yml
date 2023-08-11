@@ -25,4 +25,4 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup MySQL
         run: |
-          mysql -uroot -proot_password -hlocalhost -e 'create database fortee;'
+          mysql -uroot -proot_password -h127.0.0.1 -e 'create database fortee;'
