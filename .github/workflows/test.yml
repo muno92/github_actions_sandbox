@@ -13,6 +13,7 @@ jobs:
           MYSQL_DATABASE: database_name
           MYSQL_USER: database_user
           MYSQL_PASSWORD: database_password
+          MYSQL_ROOT_HOST: '%'
         ports:
           - 3306:3306
         options: >-
@@ -25,4 +26,4 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup MySQL
         run: |
-          mysql -uroot -proot_password -h127.0.0.1 -e 'create database fortee;'
+          mysql -uroot -proot_password -hlocalhost -e 'create database test;'
