@@ -3,33 +3,26 @@ on:
   push:
 
 jobs:
-  test1:
-    outputs:
-      test1: ${{ steps.test.outputs.test1 }}
-      test2: ${{ steps.test.outputs.test2 }}
+  setup-database:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:oracle
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: database_name
+          MYSQL_USER: database_user
+          MYSQL_PASSWORD: database_password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     steps:
-      - name: test
-        id: test
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup MySQL
         run: |
-          echo "test1=${{ toJSON('[0, 1]') }}" >> $GITHUB_OUTPUT
-          echo "test2=aaa" >> $GITHUB_OUTPUT
-
-  test2:
-    needs: test1
-    if: ${{ needs.test1.outputs.test1 != '' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo 'test2'
-  test3:
-    needs: test1
-    if: ${{ fromJSON(needs.test1.outputs.test1)[1] != 0 }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo 'test3'
-  test4:
-    needs: test1
-    if: ${{ needs.test1.outputs.test2 != '' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo 'test4'
+          mysql -uroot -proot_password -hlocalhost -e 'create database fortee;'
