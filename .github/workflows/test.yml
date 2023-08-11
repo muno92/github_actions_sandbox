@@ -24,6 +24,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - run: docker container ls -a
       - name: Setup MySQL
         run: |
           mysql -uroot -proot_password -hlocalhost -e 'create database test;'
