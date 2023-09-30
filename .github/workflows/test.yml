@@ -17,6 +17,6 @@ jobs:
             date > now.txt
             git add .
             git commit -m 'Update'
-            hub pull-request --push --message  "tbls update ${NOW}
+            hub pull-request --push --message  "update ${NOW}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
