@@ -12,7 +12,7 @@ jobs:
         run: |
             NOW=$(date '+%Y%m%d%H%M%S' -d '9 hours')
             git config --global user.name 'github-actions[bot]'
-            git config --global user.mail 'Please tell me who you are.'
+            git config --global user.mail '41898282+github-actions[bot]@users.noreply.github.com'
             git switch -c "update-${NOW}"
             date > now.txt
             git add .
