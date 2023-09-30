@@ -5,26 +5,14 @@ on:
 jobs:
   setup-database:
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:oracle
-        env:
-          MYSQL_ROOT_PASSWORD: root_password
-          MYSQL_DATABASE: database_name
-          MYSQL_USER: database_user
-          MYSQL_PASSWORD: database_password
-          MYSQL_ROOT_HOST: '%'
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - run: ss -atu
-      - name: Setup MySQL
+      - name: Commit and Push
         run: |
-          mysql -uroot -proot_password -hlocalhost -e 'create database test;'
+            git config --local user.name 'github-actions[bot]'
+            git config --local user.mail 'github-actions[bot]@users.noreply.github.com'
+            date > now.txt
+            git add .
+            git commit -m 'Update'
+            git push
