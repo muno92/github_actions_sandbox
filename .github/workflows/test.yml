@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  setup-database:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,4 +15,4 @@ jobs:
             date > now.txt
             git add .
             git commit -m 'Update'
-            git push
+            git push origin main
