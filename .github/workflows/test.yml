@@ -3,13 +3,20 @@ on:
   push:
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+  mac-franc-day-of-time:
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - run: |
-          date +'%A'
+          LC_ALL=fr_FR.UTF-8 date +'%A'
+  linux-franc-day-of-time:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: |
+          sudo locale-gen fr_FR.UTF-8
+          sudo update-locale LANG=fr_FR.UTF-8
+          LC_ALL=fr_FR.UTF-8 date +'%A'
+
