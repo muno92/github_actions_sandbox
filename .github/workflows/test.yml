@@ -11,4 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - run: LC_ALL=fr_FR.UTF-8 date +'%A'
+      - run: |
+          sudo locale-gen fr_FR.UTF-8
+          sudo update-locale LANG=fr_FR.UTF-8
+          LC_ALL=fr_FR.UTF-8 date +'%A'
