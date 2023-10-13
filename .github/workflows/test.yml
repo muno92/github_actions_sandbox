@@ -3,20 +3,8 @@ on:
   push:
 
 jobs:
-  mac-franc-day-of-time:
-    runs-on: macos-latest
+  test:
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - run: |
-          LC_ALL=fr_FR.UTF-8 date +'%A'
-  linux-franc-day-of-time:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - run: |
-          sudo locale-gen fr_FR.UTF-8
-          sudo update-locale LANG=fr_FR.UTF-8
-          LC_ALL=fr_FR.UTF-8 date +'%A'
+      - run: php -v
 
