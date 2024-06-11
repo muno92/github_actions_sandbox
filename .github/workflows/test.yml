@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ macos-latest, macos-13, masos-12 ]
+        operating-system: [ macos-latest, macos-13, macos-12 ]
         dotnet-version: [ '3.1', '5.0', '6.0', '7.0', '8.0' ]
     runs-on: ${{ matrix.operating-system }}
     steps:
