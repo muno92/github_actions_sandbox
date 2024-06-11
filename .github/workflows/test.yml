@@ -4,7 +4,17 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ macos-latest, macos-13, masos-12 ]
+        dotnet-version: [ '3.1', '5.0', '6.0', '7.0', '8.0' ]
+    runs-on: ${{ matrix.operating-system }}
     steps:
-      - run: php -v
-
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        id: setup-dotnet
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - run: dotnet --version
+      - run: dotnet tool update --global JetBrains.ReSharper.GlobalTools --version 2023.3.4
