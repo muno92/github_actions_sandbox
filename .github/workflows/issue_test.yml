@@ -1,8 +1,6 @@
 name: "Issue Test"
 on:
   issues:
-    types:
-      - edited
 
 jobs:
   test:
