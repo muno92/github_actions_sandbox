@@ -1,0 +1,13 @@
+name: "Issue Test"
+on:
+  issues:
+    types:
+      - edited
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug Issue Event
+        shell: javascript
+        run: console.log(github)
