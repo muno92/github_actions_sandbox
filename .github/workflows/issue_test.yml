@@ -6,6 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Debug Issue Event
-        shell: javascript
-        run: console.log(github)
+      - uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: console.log(context.issue)
